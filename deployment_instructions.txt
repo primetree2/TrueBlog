@@ -1,0 +1,27 @@
+Deployment Instructions (Backend: Render, Frontend: Vercel)
+
+1. Push this repo to GitHub.
+
+2. Backend (Render)
+- Create a new Web Service in Render and connect this repo.
+- Build Command:
+  npm install && npm install --prefix client && npm run build --prefix client
+- Start Command:
+  npm start
+- Environment variables (add in Render dashboard):
+  DB_URL = <your MongoDB connection string>
+  JWT_SECRET = <your_jwt_secret>
+  COOKIE_SECRET = <your_cookie_secret>
+  PORT = 8000 (optional)
+- Deploy. Render will provide a URL like https://your-render-backend.onrender.com
+
+3. Frontend (Vercel)
+- Create new project in Vercel, import this repo.
+- Set Root Directory to: client
+- Build Command: npm install && npm run build
+- Output Directory: dist
+- Update `client/vercel.json` to replace https://your-render-backend.onrender.com with your actual Render backend URL, OR set up rewrites in Vercel dashboard.
+
+4. Security
+- Do NOT commit real secrets to the repo.
+- Use Render & Vercel secret environment variables.
